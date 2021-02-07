@@ -1,1 +1,27 @@
-<p> Welcome <%= user.name %></p>
+<style type="text/css" rel="stylesheet">
+  @import url("/public/dashboard.css");
+</style>
+<p>
+  <%= user.name %>'s sweet home
+</p>
+<div class="d-grid gap-2 col-5 mx-auto" id="btns">
+  <button class="btn btn-primary" type="button">1번</button>
+</div>
+<div class="d-grid gap-2 col-5 mx-auto">
+  <button class="btn btn-outline-primary" type="button" id="btnAdd">+</button>
+</div>
+
+<script>
+  function add(text) {
+    var elem = document.createElement("BUTTON");
+    var btns = document.getElementById("btns");
+    elem.className = "btn btn-primary";
+    elem.type = "button";
+    elem.textContent = text;
+    btns.appendChild(elem);
+  }
+  document.getElementById("btnAdd").onclick = function(){
+    var input = prompt("내용을 입력하세요");
+    add(input);
+  }
+</script>

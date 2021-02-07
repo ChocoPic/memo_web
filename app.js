@@ -11,7 +11,7 @@ require("./config/passport")(passport);
 
 //mongoose
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-   .then(() => console.log('connected,,'))
+   .then(() => console.log('연결 완료!'))
    .catch((err) => console.log(err));
 
 //ejs
@@ -19,7 +19,7 @@ app.set('view engine', 'ejs');
 app.use(expressEjsLayout);
 
 //static file
-app.use('/public', express.static(__dirname +'/public'));
+app.use("/public", express.static(__dirname +'/public'));
 
 //body-parser
 app.use(express.urlencoded({ extended: false }));

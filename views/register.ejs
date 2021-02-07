@@ -1,45 +1,31 @@
-<h1>Register</h1>
-<%- include ('./partials/messages') %>
-<form action="/users/register" method="POST">
-<div class="input-area">
-    <label for="name">Name</label>
-    <input
-      type="name"
-      name="name"
-      placeholder="Enter Name"
-      value="<%= typeof name != 'undefined' ? name : '' %>"
-    />
-  
+<style type="text/css" rel="stylesheet">
+  @import url("/public/user.css");
+</style>
+
+<h1><strong>Register</strong></h1>
+<div class="message">
+  <%- include ('./partials/messages') %>
 </div>
-<div class="input-area">
-    <label for="email">Email</label>
-    <input
-      type="email"
-      name="email"
-      placeholder="Enter Email"
-      value="<%= typeof email != 'undefined' ? email : '' %>"
-    />
-  </div>
-  <div class="input-area">
-    <label for="password">Password</label>
-    <input
-      type="password"
-      name="password"
-      placeholder="Create Password"
-      value="<%= typeof password != 'undefined' ? password : '' %>"
-    />
-  </div>
-  <div class="input-area">
-    <label for="password2">Confirm Password</label>
-    <input
-      type="password"
-      name="password2"
-      placeholder="Confirm Password"
-      value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-    />
-  </div>
-  <button type="submit" class="btn btn-primary btn-block">
-    Register
-  </button>
-</form>
-<p >Have An Account? <a href="/users/login">Login</a></p>
+  <form action="/users/register" method="POST">
+    <div class="input-area mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input class="form-text" type="name" name="name" placeholder="Enter Name" value="<%= typeof name != 'undefined' ? name : '' %>" />
+    </div>
+    <div class="input-area mb-3">
+      <label for="email class="form-label">Email</label>
+      <input class="form-text" type="email" name="email" placeholder="Enter Email"
+        value="<%= typeof email != 'undefined' ? email : '' %>" />
+    </div>
+    <div class="input-area mb-3">
+      <label for="password class="form-label">Password</label>
+      <input class="form-text" type="password" name="password" placeholder="Create Password"
+        value="<%= typeof password != 'undefined' ? password : '' %>" />
+    </div>
+    <div class="input-area mb-3">
+      <label for="password2 class="form-label">Confirm Password</label>
+      <input class="form-text" type="password" name="password2" placeholder="Confirm Password"
+        value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+    </div>
+    <button type="submit"> Register </button>
+  </form>
+  <p>Have An Account? <a href="/users/login">Login</a></p>

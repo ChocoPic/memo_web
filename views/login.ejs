@@ -1,25 +1,33 @@
-<h1> Login </h1>
-<%- include ('./partials/messages') %>
-<form action="/users/login" method="POST">
-<div class="input-area">
-  <label for="email">Email</label>
-  <input
-    type="email"
-    name="email"
-    placeholder="Enter Email"
-  />
-</div>
-<div class="input-area">
-    <label for="password">Password</label>
+<style type="text/css" rel="stylesheet">
+    @import url("/public/user.css");
+</style>
+
+<section>
+  <h1><strong>Login</strong> </h1>
+  <%- include ('./partials/messages') %>
+  <form action="/users/login" method="POST">
+  <div class="input-area mb-3">
+    <label for="email" class="form-label">Email</label>
     <input
-      type="password"
-      name="password"
-      placeholder="Enter Password"
+      class="form-text"
+      type="email"
+      name="email"
+      placeholder="Enter Email"
     />
-</div class="btn-area">
-<button type="submit" class="btn btn-primary btn-block">Login</button>
-<div class="others">
-  <a href="/users/register">회원가입</a>
-  <a href="">비밀번호 찾기</a>
-</div>
+  </div>
+  <div class="input-area mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        class="form-text"
+        type="password"
+        name="password"
+        placeholder="Enter Password"
+      />
+  </div>
+  <button type="submit">Login</button>
 </form>
+  <p>
+    <a href="/users/register">회원가입</a>
+    <a href="">비밀번호 찾기</a>
+  </p>
+</section>

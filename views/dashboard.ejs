@@ -2,8 +2,51 @@
   @import url("/public/dashboard.css");
 </style>
 <p>
-  <%= user.name %>'s sweet home
+  Welcome <%= user.name %>
 </p>
+<a href="/users/logout">Logout</a>
+<table class="table">
+  <thead>
+    <!--이름이 user.email인 db의 모든 내용을 불러와서
+      room(key) 별로 stuff를 출력합니다-->
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">First</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if(datas == null || datas.length == 0){ %>
+      <tr>
+        <td colspan="2"> 저장된 데이터가 없습니다 </td>
+      </tr>
+    <% } %>
+    <% datas.forEach(function(data) { %>
+        <tr>
+          <td><%= data.item %> </td>
+        </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<div>
+  <a class="btn btn-primary" href="/posts/new">New</a>
+</div>
+<script>
+  function add(text) {
+    var elem = document.createElement("BUTTON");
+    var btns = document.getElementById("btns");
+    elem.className = "btn btn-primary";
+    elem.type = "button";
+    elem.textContent = text;
+    btns.appendChild(elem);
+  }
+  document.getElementById("btnAdd").onclick = function(){
+    var input = prompt("내용을 입력하세요");
+    add(input);
+  }
+</script>
+
+<!--
 <div class="d-grid gap-2 col-5 mx-auto" id="btns">
   <button class="btn btn-primary" type="button">1번</button>
 </div>
@@ -25,3 +68,4 @@
     add(input);
   }
 </script>
+-->

@@ -7,6 +7,7 @@ const url = 'mongodb+srv://root:pw1234@cluster0.zxwaj.mongodb.net/userdb?retryWr
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+
 require("./config/passport")(passport);
 
 //mongoose
@@ -45,5 +46,6 @@ app.use((req, res, next) => {
 //routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+//app.use('/dashboard', require('./routes/dashboard'));
 
 app.listen(3000); 

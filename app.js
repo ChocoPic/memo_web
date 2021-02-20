@@ -1,14 +1,16 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 const app = express();
-const mongoose = require('mongoose');
+
 const expressEjsLayout = require('express-ejs-layouts')
-const url = 'mongodb+srv://root:pw1234@cluster0.zxwaj.mongodb.net/userdb?retryWrites=true&w=majority';
 const flash = require('connect-flash');
 const session = require('express-session');
-const passport = require('passport');
 
+const passport = require('passport');
 require("./config/passport")(passport);
+
+const url = 'mongodb+srv://root:pw1234@cluster0.zxwaj.mongodb.net/userdb?retryWrites=true&w=majority';
 
 //mongoose
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -46,6 +48,6 @@ app.use((req, res, next) => {
 //routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
-//app.use('/dashboard', require('./routes/dashboard'));
+app.use('/dashboard', require('./routes/dashboard'));
 
 app.listen(3000); 

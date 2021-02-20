@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user.js");
-const Email = require("../models/user-profile.js")
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
@@ -59,7 +58,7 @@ router.post('/register', (req, res) => {
               newUser.password = hash;
               newUser.save()
                 .then((value) => {
-                  console.log(value);
+                  console.log("value값: " + value);
                   req.flash('success_msg', "회원가입이 완료되었습니다!")
                   res.redirect('/users/login');
                 }).catch(value => console.log(value));
@@ -76,7 +75,6 @@ router.post('/login', (req, res, next) => {
     failureFlash: true,
   })(req, res, next);
 })
-
 //logout
 router.get('/logout', (req, res) => {
   req.logout();

@@ -4,7 +4,9 @@
 
 <section>
   <h1><strong>Login</strong> </h1>
-  <%- include ('./partials/messages') %>
+  <label class="message">
+    <%- include ('./partials/messages') %>
+  </label>
   <form action="/users/login" method="POST">
   <div class="input-area mb-3">
     <label for="email" class="form-label">Email</label>

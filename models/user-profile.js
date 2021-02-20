@@ -1,8 +1,13 @@
 var mongoose = require('mongoose');
 var emailSchema = new mongoose.Schema({
-    email: {
+    username: {
         type: String,
+        required: [true, 'Useremail is required']
         },
+    created: {
+        type: Date,
+        required: [true, 'Created date is required']
+    }
 });
 var Email = mongoose.model('Email', emailSchema);
 

@@ -1,0 +1,17 @@
+<style type="text/css" rel="stylesheet">
+    @import url("/public/boards.css");
+</style>
+<div class="container mb-3">
+    <div class="card">
+      <h5 class="card-header"><%= post.title %></h5>
+        <div class="card-body">
+          <div class="card-text"><%= post.memo %></div>
+          <div>최종수정: <%= post.createdAt %></div>
+          <a href="/dashboard" class="btn btn-primary">이전</a>
+          <a href="/dashboard/<%= post._id %>/edit" class="btn btn-primary">수정</a>
+          <form action="/dashboard/<%= post._id %>?_method=delete" method="post" class="d-inline">
+            <a class="btn btn-primary" href="javascript:void(0)" onclick="confirm('삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
+          </form>
+        </div>
+      </div>
+</div>

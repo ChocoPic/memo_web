@@ -1,33 +1,23 @@
+<style type="text/css" rel="stylesheet">
+  @import url("/public/boards.css");
+</style>
 <div class="container mb-3">
-    <form action="/dashboard" method="post">
-      <div class="col-auto">
-        <select class="form-select" aria-label="Default select example">
-          <option selected>카테고리를 선택하세요</option>
-          <% var i=1; datas.forEach(function(data) { %>
-              <option value='<%= i %>'><%= data.room %></option>
-              <% i++;
-          }); %>
-        </select>
-        <div class="col-auto">
-          <input type="text" id="room" name="room" value="" placeholder="직접입력"  class="form-control">
-        </div>
-      </div>
+  <form action="/dashboard" method="post">
 
-      <div class="form-group">
-        <label for="stuff">item</label>
-        <input type="text" id="item" name="item" value="" class="form-control">
-      </div>
-      
-      <div class="form-group">
-        <label for="memo">memo</label>
-        <textarea id="memo" name="memo" rows="5" class="form-control"></textarea>
-      </div>
+    <div class="form-group">
+      <label for="title">제목</label>
+      <input type="text" id="title" name="title" value="" class="form-control">
+    </div>
 
-      <div>
-        <a class="btn btn-primary" href="/dashboard">Back</a>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
+    <div class="form-group">
+      <label for="memo">메모</label>
+      <textarea id="memo" name="memo" rows="5" class="form-control"></textarea>
+    </div>
 
-    </form>
+    <div>
+      <a class="btn btn-primary" href="/dashboard">Back</a>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 
-  </div>
+  </form>
+</div>

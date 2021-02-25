@@ -11,9 +11,9 @@ const passport = require('passport');
 require("./config/passport")(passport);
 
 const url = 'mongodb+srv://root:pw1234@cluster0.zxwaj.mongodb.net/userdb?retryWrites=true&w=majority';
-
+const methodOverride = require('method-override');
 //mongoose
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
    .then(() => console.log('연결 완료!'))
    .catch((err) => console.log(err));
 
@@ -26,6 +26,8 @@ app.use("/public", express.static(__dirname +'/public'));
 
 //body-parser
 app.use(express.urlencoded({ extended: false }));
+
+app.use(methodOverride('_method'));
 
 //express session
 app.use(session({

@@ -8,9 +8,9 @@ const { ensureAuthenticated } = require("../config/auth.js");
 var curUser;
 var Post; 
 var PostSchema = new mongoose.Schema({
-   room: { type: String, required: true },
-   item: { type: String, required: true },
+   title: { type: String, required: true },
    memo: { type: String, required: true },
+   createdAt: { type: Date, default: Date.now},
 });
 var models = {};
 var getModel = (collectionName) => {
@@ -30,13 +30,13 @@ router.get('/', ensureAuthenticated, (req, res) => {
       created: Date.now()
    })
    Post = getModel(curUser.username);
-   //console.log(curUser.username + " " + curUser.created);
+   console.log(curUser.username + " " + curUser.created);
    Post.find({})
-      .sort([['room', 1], ['item', 1]])
+      .sort('-createdAt')
       .exec(function (err, posts) {
          if (err) return res.json(err);
          else {
-            console.log(posts);//
+            console.log(posts);
             res.render('dashboard', {
                user: req.user,
                datas: posts
@@ -45,9 +45,10 @@ router.get('/', ensureAuthenticated, (req, res) => {
       });
 })
 
+//새 메모
 router.get('/new', (req, res) => {
    Post.find({})
-      .distinct('room')
+      //.distinct('title')
       .exec(function (err, posts) {
          if (err) return res.json(err);
          res.render('boards/new', {
@@ -55,24 +56,24 @@ router.get('/new', (req, res) => {
          });
       });
 })
-
+//저장
 router.post('/', (req, res) => {
-   const { room, item, memo } = req.body;
-   console.log(room + " " + item + " " + memo + " ");
-   if (!room) {
-      console.log("카테고리를 선택하세요");
-   } else if (!item) {
-      console.log('아이템을 입력하세요');
+   const { title, memo, createdAt } = req.body;
+   console.log(title + " " + memo + " " + createdAt + " ");
+   if (!title) {
+      console.log("제목을 입력하세요");
+   } else if (!memo) {
+      console.log("내용을 입력하세요");
    } else {
-      Post.findOne(curUser.username, { room: room, item: item, memo: memo }).exec((err, data) => {
+      Post.findOne({ title: title, memo: memo, createdAt: createdAt }).exec((err, data) => {
          console.log(data);
          if (data) {
             console.log("이미 존재합니다.");
          } else {
             const newItem = new Post({
-               room: room,
-               item: item,
-               memo: memo
+               title: title,
+               memo: memo,
+               createdAt: createdAt
             });
             newItem.save()
                .then((value) => {
@@ -84,9 +85,41 @@ router.post('/', (req, res) => {
    }
 });
 
-router.get('/edit', (req, res) => {
-   res.render('boards/edit');
+//자세히보기
+router.get('/:id', function(req, res)  {
+   Post.findOne({_id:req.params.id}, function(err, post){
+      if(err) return res.json(err);
+      res.render('boards/show', {
+         post: post
+      });
+   })
 })
 
+//수정
+router.get('/:id/edit', (req, res) => {
+   Post.findOne({_id:req.params.id}, function(err, post){
+      if(err) return res.json(err);
+      res.render('boards/edit', {
+         post: post
+      });
+   });
+});
+//업데이트
+router.put('/:id', function(req, res) {
+   req.body.createdAt = Date.now();
+   Post.findOneAndUpdate({_id:req.params.id}, req.body, function(err, post){
+      if(err) return res.json(err);
+      res.redirect("/dashboard/"+ req.params.id);
+   });
+});
+
+//삭제
+router.delete('/:id', function(req, res){
+   console.log("삭제!!");
+   Post.deleteOne({_id:req.params.id}, function(err){
+      if(err) return res.json(err);
+      res.redirect('/dashboard');
+   });
+});
 
 module.exports = router;

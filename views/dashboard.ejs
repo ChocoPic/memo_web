@@ -1,34 +1,31 @@
-<<style type="text/css" rel="stylesheet">
+<style type="text/css" rel="stylesheet">
   @import url("/public/dashboard.css");
 </style>
 
-<section>
+<div class="user">
   <p>Welcome <%= user.name %>
   </p>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">First</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if(datas==null || datas.length==0){ %>
-        <tr>
-          <td colspan="2"> 저장된 데이터가 없습니다 </td>
-        </tr>
-        <% } %>
-          <% datas.forEach(function(data) { %>
-            <tr>
-              <td>
-                <%= data.item %>
-              </td>
-            </tr>
-            <% }) %>
-    </tbody>
-  </table>
-  <div>
-    <a class="btn btn-primary" href="/dashboard/new">New</a>
-  </div>
+</div>
+<div class="btns">
+  <a class="btn btn-primary" href="/dashboard/new">New</a>
   <a href="/users/logout">Logout</a>
-</section>
+</div>
+<% if(datas==null || datas.length==0){ %>
+<% } %>
+<div class="row">
+<% datas.forEach(function(data) { %>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+        <a href="/dashboard/<%= data._id %>">
+          <div class="ellipsis"><strong><%= data.title %></strong></div>
+        </a>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= data.memo %></p>
+      </div>
+      <div class="card-footer text-muted"><%= data.createdAt %></div>
+    </div>
+  </div>
+<% }) %>
+</div>

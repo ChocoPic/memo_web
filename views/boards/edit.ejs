@@ -1,0 +1,23 @@
+<style type="text/css" rel="stylesheet">
+    @import url("/public/boards.css");
+</style>
+<div class="container mb-3">
+    <form action="/dashboard/<%=post._id%>?_method=put" method="post">
+
+        <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title" value="<%=post.title%>" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="memo">메모</label>
+            <textarea id="memo" name="memo" rows="5" class="form-control"><%= post.memo %></textarea>
+        </div>
+
+        <div>
+            <a class="btn btn-primary" href="/dashboard/<%=post._id%>">이전</a>
+            <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+
+    </form>
+</div>

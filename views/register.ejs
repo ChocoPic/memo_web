@@ -9,23 +9,23 @@
   <form action="/users/register" method="POST">
     <div class="input-area mb-3">
       <label for="name" class="form-label">Name</label>
-      <input class="form-text" type="name" name="name" placeholder="Enter Name" value="<%= typeof name != 'undefined' ? name : '' %>" />
+      <input class="form-text" type="name" name="name" placeholder="이름을 입력하세요" value="<%= typeof name != 'undefined' ? name : '' %>" />
     </div>
     <div class="input-area mb-3">
       <label for="email class="form-label">Email</label>
-      <input class="form-text" type="email" name="email" placeholder="Enter Email"
+      <input class="form-text" type="email" name="email" placeholder="이메일을 입력하세요"
         value="<%= typeof email != 'undefined' ? email : '' %>" />
     </div>
     <div class="input-area mb-3">
       <label for="password class="form-label">Password</label>
-      <input class="form-text" type="password" name="password" placeholder="Create Password"
+      <input class="form-text" type="password" name="password" placeholder="비밀번호를 입력하세요"
         value="<%= typeof password != 'undefined' ? password : '' %>" />
     </div>
     <div class="input-area mb-3">
       <label for="password2 class="form-label">Confirm Password</label>
-      <input class="form-text" type="password" name="password2" placeholder="Confirm Password"
+      <input class="form-text" type="password" name="password2" placeholder="비밀번호 확인"
         value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
     </div>
-    <button type="submit"> Register </button>
+    <button type="submit">회원가입</button>
   </form>
   <p>Have An Account? <a href="/users/login">Login</a></p>

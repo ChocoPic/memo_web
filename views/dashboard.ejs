@@ -3,12 +3,11 @@
 </style>
 
 <div class="user">
-  <p>Welcome <%= user.name %>
-  </p>
+  <p><%= user.name %>의 메모장</p>
 </div>
 <div class="btns">
   <a class="btn btn-primary" href="/dashboard/new">New</a>
-  <a href="/users/logout">Logout</a>
+  <a class="btn btn-outline-primary" href="/users/logout">Logout</a>
 </div>
 <% if(datas==null || datas.length==0){ %>
 <% } %>
